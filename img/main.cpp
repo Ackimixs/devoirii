@@ -173,6 +173,8 @@ void ProcessImg(const std::string& in, const std::string& out)
 
 void ProcessDir(const std::string& in, const std::string& out)
 {
+    fs::create_directories(out);
+
     for (const auto& entry : fs::directory_iterator(in)) {
         if (!entry.is_regular_file()) continue;
 
@@ -186,10 +188,7 @@ void ProcessDir(const std::string& in, const std::string& out)
 }
 
 int main() {
-    std::string in = "../../img/Images/";
-    std::string out = "out";
-
-    ProcessDir(in, out);
+    ProcessDir("Images", "out");
 
     //ProcessImg("../../img/Images/chat.png", "test/chat_decoded.png");
 
